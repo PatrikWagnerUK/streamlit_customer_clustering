@@ -61,7 +61,7 @@ def show_page():
                      " Customers in this segment overwhelmingly tend to live in a mid sized or big city.")
         elif choice == 2:
             st.write("The defining trait of persona segment 2 is that belonging customers are more highly educated "
-                     "and of an older age bracket, between the ages of 40 and 74. Customers in this segment are"
+                     "and of an older age bracket, between the ages of 40 and 74. Customers in this segment are "
                      "of an even gender split, with 67% being married. Over half of customers in this segment work"
                      "in an entry to mid level position, with incomes ranging from $110k to $220k. There is also "
                      "a small subset of this segment with salaries ranging from $260k to $310k. These customers"
