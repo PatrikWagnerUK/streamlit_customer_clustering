@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.cluster import KMeans
-from sklearn.metrics import accuracy_score, silhouette_samples, silhouette_score
 from sklearn.preprocessing import StandardScaler
 from time import sleep
 import plotly.express as px
@@ -51,27 +50,27 @@ def show_page():
 
         if choice == 0:
             st.write("Customers belonging to persona segment 0 are nearly all single and living in a smaller city."
-                     " 63% of customers in this segment are Male, with the overwhelming majority of customers being"
+                     " 63% of customers in this segment are Male, with the overwhelming majority of customers being "
                      "between 20 and 41 years old. This segment tends to have less formal education and work in"
                      "more entry level positions. Customers in this segment have a yearly income ranging from "
                      "$60k to $125k")
         elif choice == 1:
-            st.write("Customers belonging to persona segment 1 are nearly all married, with less formal education"
+            st.write("Customers belonging to persona segment 1 are nearly all married, with less formal education "
                      "and working in entry level positions. 65% of of customers in this segment are Female, with"
                      "an age range of 23 to 30, and belonging to a slightly higher income bracket of $90k to $180k."
-                     "Customers in this segment overwhelmingly tend to live in a mid sized or big city.")
+                     " Customers in this segment overwhelmingly tend to live in a mid sized or big city.")
         elif choice == 2:
-            st.write("The defining trait of persona segment 2 is that belonging customers are more highly educated"
+            st.write("The defining trait of persona segment 2 is that belonging customers are more highly educated "
                      "and of an older age bracket, between the ages of 40 and 74. Customers in this segment are"
                      "of an even gender split, with 67% being married. Over half of customers in this segment work"
-                     "in an entry to mid level position, with incomes ranging from $110k to $220k. There is also"
+                     "in an entry to mid level position, with incomes ranging from $110k to $220k. There is also "
                      "a small subset of this segment with salaries ranging from $260k to $310k. These customers"
                      "live in cities of all sizes.")
         elif choice == 3:
             st.write("Customer segment 3, the Bachelor segment, is entirely Male, Single and living in either"
-                     "mid sized or big cities. The vast majority of belonging customers are high school educated,"
+                     "mid sized or big cities. The vast majority of belonging customers are high school educated, "
                      "working in entry to mid level positions, with a small subset working as senior managers."
-                     "The salary range for this segment is $90 to $180k, with a very wide distribution of ages"
+                     " The salary range for this segment is $90 to $180k, with a very wide distribution of ages"
                      "ranging from 22 to 55 years old.")
         elif choice == 4:
             st.write("Customers belonging to segment 4 are all married and overwhelmingly female. Ages range from "
