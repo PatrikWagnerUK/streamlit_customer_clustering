@@ -6,7 +6,8 @@ from sklearn.preprocessing import StandardScaler
 from time import sleep
 import plotly.express as px
 
-## Creating function to display streamlit page
+
+# Creating function to display streamlit page
 def show_page():
     st.title('Customer Analysis & Segmentation')
     st.write('')
@@ -26,7 +27,7 @@ def show_page():
     if 'clicked' not in st.session_state:
         st.session_state['clicked'] = 0
 
-    segmented = cluster_data()
+    segmented = cluster_data()[0]
     if st.button("Search for Customer Segments"):
         st.session_state['clicked'] = 1
 
@@ -48,65 +49,101 @@ def show_page():
         st.write('')
         st.subheader('Segment Insights')
 
+        def plot(x, data=segmented_filtered, color='darkblue'):
+            fig = px.histogram(data, x=x, color_discrete_sequence=[color])
+            st.plotly_chart(fig, use_container_width=True)
+            # Plotly colors: https://community.plotly.com/t/plotly-colours-list/11730/3
+
+        def column_display(x1, x2):
+            col1, col2 = st.columns(2)
+            with col1:
+                plot(x1)
+            with col2:
+                plot(x2)
+
         if choice == 0:
             st.write("Customers belonging to persona segment 0 are nearly all single and living in a smaller city."
                      " 63% of customers in this segment are Male, with the overwhelming majority of customers being "
                      "between 20 and 41 years old. This segment tends to have less formal education and work in"
                      "more entry level positions. Customers in this segment have a yearly income ranging from "
                      "$60k to $125k")
+            analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
+            if analysis_view == 'Sociodemographic':
+                column_display("Sex", "Marital status")
+                plot('Age')
+            elif analysis_view == 'Professional':
+                plot('Income')
+                column_display("Education", "Occupation")
+            elif analysis_view == 'Geographic':
+                plot('Settlement size')
+
         elif choice == 1:
             st.write("Customers belonging to persona segment 1 are nearly all married, with less formal education "
                      "and working in entry level positions. 65% of of customers in this segment are Female, with"
                      "an age range of 23 to 30, and belonging to a slightly higher income bracket of $90k to $180k."
                      " Customers in this segment overwhelmingly tend to live in a mid sized or big city.")
+            analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
+            if analysis_view == 'Sociodemographic':
+                column_display("Sex", "Marital status")
+                plot('Age')
+            elif analysis_view == 'Professional':
+                plot('Income')
+                column_display("Education", "Occupation")
+            elif analysis_view == 'Geographic':
+                plot('Settlement size')
+
         elif choice == 2:
             st.write("The defining trait of persona segment 2 is that belonging customers are more highly educated "
-                     "and of an older age bracket, between the ages of 40 and 74. Customers in this segment are "
+                     "and of an older age bracket, between the ages of 40 and 74. Customers in this segment are"
                      "of an even gender split, with 67% being married. Over half of customers in this segment work"
                      "in an entry to mid level position, with incomes ranging from $110k to $220k. There is also "
                      "a small subset of this segment with salaries ranging from $260k to $310k. These customers"
                      "live in cities of all sizes.")
+            analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
+            if analysis_view == 'Sociodemographic':
+                column_display("Sex", "Marital status")
+                plot('Age')
+            elif analysis_view == 'Professional':
+                plot('Income')
+                column_display("Education", "Occupation")
+            elif analysis_view == 'Geographic':
+                plot('Settlement size')
+
         elif choice == 3:
             st.write("Customer segment 3, the Bachelor segment, is entirely Male, Single and living in either"
                      "mid sized or big cities. The vast majority of belonging customers are high school educated, "
                      "working in entry to mid level positions, with a small subset working as senior managers."
                      " The salary range for this segment is $90 to $180k, with a very wide distribution of ages"
                      "ranging from 22 to 55 years old.")
+            analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
+            if analysis_view == 'Sociodemographic':
+                column_display("Sex", "Marital status")
+                plot('Age')
+            elif analysis_view == 'Professional':
+                plot('Income')
+                column_display("Education", "Occupation")
+            elif analysis_view == 'Geographic':
+                plot('Settlement size')
+
         elif choice == 4:
             st.write("Customers belonging to segment 4 are all married and overwhelmingly female. Ages range from "
                      "20 to 37, with incomes ranging from $60k to $130k. Customers belonging to this group all "
                      "live in smaller cities, with a high school education, and either unemployed or working in "
                      "an entry level position.")
+            analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
+            if analysis_view == 'Sociodemographic':
+                column_display("Sex", "Marital status")
+                plot('Age')
+            elif analysis_view == 'Professional':
+                plot('Income')
+                column_display("Education", "Occupation")
+            elif analysis_view == 'Geographic':
+                plot('Settlement size')
 
-        col1, col2 = st.columns(2)
-
-        with col1:
-            fig = px.histogram(segmented_filtered, x="Sex", color_discrete_sequence=['darkblue'])
-            st.plotly_chart(fig, use_container_width=True)
-
-        with col2:
-            fig = px.histogram(segmented_filtered, x="Marital status", color_discrete_sequence=['darkblue'])
-            st.plotly_chart(fig, use_container_width=True)
-
-        fig = px.histogram(segmented_filtered, x="Age", color_discrete_sequence=['darkblue'])
-        st.plotly_chart(fig, use_container_width=True)
-
-        fig = px.histogram(segmented_filtered, x="Income", color_discrete_sequence=['darkblue'])
-        st.plotly_chart(fig, use_container_width=True)
-
-        col3, col4 = st.columns(2)
-        with col3:
-            fig = px.histogram(segmented_filtered, x="Occupation", color_discrete_sequence=['darkblue'])
-            st.plotly_chart(fig, use_container_width=True)
-
-        with col4:
-            fig = px.histogram(segmented_filtered, x="Education", color_discrete_sequence=['darkblue'])
-            st.plotly_chart(fig, use_container_width=True)
-
-        fig = px.histogram(segmented_filtered, x="Settlement size", color_discrete_sequence=['darkblue'])
-        st.plotly_chart(fig, use_container_width=True)
-
-        # Plotly colors: https://community.plotly.com/t/plotly-colours-list/11730/3
+        # st.subheader('Individual Customer Classification')
+        # st.write('Input customer details below to identify which segment they belong to.')
+        #
+        # model = cluster_data()[1]
 
         st.sidebar.title('About Creator')
         st.sidebar.write('Hello! My name is Patrik Wagner and I am an aspiring Data Scientist working on personal projects, such as this one, '
@@ -158,14 +195,13 @@ def cluster_data():
 
     # Splitting personas into distinct dataframes
 
-    label0 = df[(df['cust_persona'] == 0)]
-    label1 = df[(df['cust_persona'] == 1)]
-    label2 = df[(df['cust_persona'] == 2)]
-    label3 = df[(df['cust_persona'] == 3)]
-    label4 = df[(df['cust_persona'] == 4)]
+    # label0 = df[(df['cust_persona'] == 0)]
+    # label1 = df[(df['cust_persona'] == 1)]
+    # label2 = df[(df['cust_persona'] == 2)]
+    # label3 = df[(df['cust_persona'] == 3)]
+    # label4 = df[(df['cust_persona'] == 4)]
 
-
-    return df
+    return df, model
 
 
 
