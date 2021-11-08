@@ -66,7 +66,7 @@ def show_page():
                      " 63% of customers in this segment are Male, with the overwhelming majority of customers being "
                      "between 20 and 41 years old. This segment tends to have less formal education and work in"
                      "more entry level positions. Customers in this segment have a yearly income ranging from "
-                     "$60k to $125k")
+                     "$60k to $125k.")
             analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
             if analysis_view == 'Sociodemographic':
                 column_display("Sex", "Marital status")
