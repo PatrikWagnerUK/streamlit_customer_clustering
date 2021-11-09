@@ -145,6 +145,7 @@ def show_page():
         #
         # model = cluster_data()[1]
 
+        # Sidebar Info
         st.sidebar.title('About Creator')
         st.sidebar.write('Hello! My name is Patrik Wagner and I am an aspiring Data Scientist working on personal projects, such as this one, '
                          'to add to my skills. Have comments or thoughts on this project? Drop me a note!')
