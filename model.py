@@ -148,7 +148,7 @@ def show_page():
         # Sidebar Info
         st.sidebar.title('About Creator')
         st.sidebar.write('Hello! My name is Patrik Wagner and I am an aspiring Data Scientist working on personal projects, such as this one, '
-                         'to add to my skills. Have comments or thoughts on this project? Drop me a note!')
+                         'to add to my technical capabilities. Have comments or thoughts on this project? Drop me a note!')
         st.sidebar.markdown('__patrikwagner.uk@gmail.com__')
         st.sidebar.title('Hire Me!')
         st.sidebar.markdown('[LinkedIn](https://www.linkedin.com/in/pwagnerwork)')
