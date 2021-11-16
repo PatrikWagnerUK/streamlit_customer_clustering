@@ -113,7 +113,7 @@ def show_page():
             st.write("Customer segment 3, the Bachelor segment, is entirely Male, Single and living in either "
                      "mid sized or big cities. The vast majority of belonging customers are high school educated, "
                      "working in entry to mid level positions, with a small subset working as senior managers."
-                     " The salary range for this segment is $90 to $180k, with a very wide distribution of ages"
+                     " The salary range for this group is $90 to $180k, with a very wide distribution of ages"
                      "ranging from 22 to 55 years old.")
             analysis_view = st.selectbox("Select", ['Sociodemographic', 'Professional', 'Geographic'])
             if analysis_view == 'Sociodemographic':
